@@ -2,6 +2,7 @@
 let products = [
   { id: 1, title: 'Prod 1', price: 100 },
   { id: 2, title: 'Prod 2', price: 200 },
+  { id: 3, title: 'Prod 3', price: 300 },
 ];
 
 export const getAll = () => products;
@@ -16,7 +17,7 @@ export const create = (data) => {
 
 export const remove = (id) => {
   products = products.filter((p) => p.id != id);
-  return { message: 'deleted' };
+  return 'Borrado: Producto con el id ' + id;
 };
 
 // CON ASINCRONIA PARA DB:

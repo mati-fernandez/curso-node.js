@@ -1,7 +1,7 @@
 import jwt from 'jsonwebtoken';
 const JWT_SECRET = process.env.JWT_SECRET || 'changeme';
 
-const demoUser = { id: 'u1', email: 'admin@techlab.com', password: '1234' };
+const demoUser = { id: 'u1', email: 'test@test.com', password: '1234' };
 
 export const login = async ({ email, password }) => {
   if (email !== demoUser.email || password !== demoUser.password) {

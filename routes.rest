@@ -1,7 +1,8 @@
 GET http://localhost:3000/api/products
 ###
-POST http://localhost:3000/api/products
+POST http://localhost:3000/api/products/create
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1MSIsImVtYWlsIjoidGVzdEB0ZXN0LmNvbSIsImlhdCI6MTc2MzI1OTY4MSwiZXhwIjoxNzYzMjY2ODgxfQ.os4x6SGGNdtkxiXlRJ7wm8CcxILQQfUGSlarZhuICuw
 
 {
   "title": "Nuevo producto",
@@ -9,4 +10,13 @@ Content-Type: application/json
   "category": "electronics"
 }
 ###
-DELETE http://localhost:3000/api/products/1
+DELETE http://localhost:3000/api/products/3
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1MSIsImVtYWlsIjoidGVzdEB0ZXN0LmNvbSIsImlhdCI6MTc2MzI1OTY4MSwiZXhwIjoxNzYzMjY2ODgxfQ.os4x6SGGNdtkxiXlRJ7wm8CcxILQQfUGSlarZhuICuw
+###
+POST http://localhost:3000/api/auth/login
+Content-Type: application/json
+
+{
+    "email": "test@test.com",
+    "password": "1234"
+}
