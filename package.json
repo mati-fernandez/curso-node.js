@@ -7,13 +7,15 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "node --watch src/index.js",
-    "prod": "node src/index.js"
+    "prod": "node src/index.js",
+    "hash": "node scripts/gen-hash.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "packageManager": "pnpm@10.17.1",
   "dependencies": {
+    "bcryptjs": "3.0.3",
     "body-parser": "2.2.0",
     "cors": "2.8.5",
     "dotenv": "17.2.3",
