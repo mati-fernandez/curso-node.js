@@ -16,7 +16,10 @@ export const getById = async (id) => {
 export const create = async (payload) => {
   const ref = await collection().add(payload);
   const doc = await ref.get();
-  return { id: doc.id, ...doc.data() };
+  return {
+    id: doc.id,
+    ...doc.data(),
+  };
 };
 
 export const remove = async (id) => {
@@ -24,5 +27,10 @@ export const remove = async (id) => {
   const doc = await docRef.get();
   if (!doc.exists) return null;
   await docRef.delete();
-  return { id, deleted: true };
+  return {
+    message: 'Producto eliminado exitosamente!',
+    id,
+    deleted: true,
+    productData: { ...doc.data() },
+  };
 };

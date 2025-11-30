@@ -7,9 +7,9 @@ const JWT_SECRET = process.env.JWT_SECRET || 'changeme';
 // Luego agregar el hash al usuario y levantar el server
 
 const demoUser = {
-  id: 'u1',
+  id: 'FwTxzKzpi8VJ4fVQngk6',
   email: 'test@test.com',
-  passwordHash: '$2b$10$C2D5hHQ8pHpsw.0RKtfIZOGQziixy2LDRCpeb5DXbpeU3qE5M8EXe',
+  passwordHash: '$2b$10$nOOP5.MIqeq1R1klPujVZupaDRFeEnmGDOmwpLavmB1kXLWrKiOge',
 };
 
 export const login = async ({ email, password }) => {

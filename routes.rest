@@ -1,18 +1,10 @@
+### Obtiene todos los productos:
 GET http://localhost:3000/api/products
-###
-POST http://localhost:3000/api/products/create
-Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1MSIsImVtYWlsIjoidGVzdEB0ZXN0LmNvbSIsImlhdCI6MTc2MzU5NTE0MCwiZXhwIjoxNzYzNjAyMzQwfQ.i0leifHVQ39DIH_SEfytWgQAvtyZ3lCpuAgFbMXAWI8
 
-{
-  "title": "Nuevo producto",
-  "price": 500,
-  "category": "electronics"
-}
-###
-DELETE http://localhost:3000/api/products/3
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1MSIsImVtYWlsIjoidGVzdEB0ZXN0LmNvbSIsImlhdCI6MTc2MzI1OTY4MSwiZXhwIjoxNzYzMjY2ODgxfQ.os4x6SGGNdtkxiXlRJ7wm8CcxILQQfUGSlarZhuICuw
-###
+### Obtiene producto por ID:
+GET http://localhost:3000/api/products/GnZjETGuemcKiBBo5MNS
+
+### Loguearse primero (para el resto de methods):
 POST http://localhost:3000/api/auth/login
 Content-Type: application/json
 
@@ -20,3 +12,19 @@ Content-Type: application/json
     "email": "test@test.com",
     "password": "1234"
 }
+
+### Crea un producto nuevo:
+POST http://localhost:3000/api/products/create
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJGd1R4ekt6cGk4Vko0ZlZRbmdrNiIsImVtYWlsIjoidGVzdEB0ZXN0LmNvbSIsImlhdCI6MTc2NDUzNjE0MSwiZXhwIjoxNzY0NTQzMzQxfQ.lAE7SjAoxiEthHhIe6Cdc0yFbprzV-4_c7a7KV1zoCk
+
+{
+  "title": "Jabón",
+  "price": 500,
+  "stock": 20
+}
+
+### Elimina un producto por su ID:
+DELETE http://localhost:3000/api/products/H0mChWouEEt6DwiFY8eG
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJGd1R4ekt6cGk4Vko0ZlZRbmdrNiIsImVtYWlsIjoidGVzdEB0ZXN0LmNvbSIsImlhdCI6MTc2NDUyNTkwNSwiZXhwIjoxNzY0NTMzMTA1fQ.aUCgS0kGlNqvDDLJVCRc9fQ9rD9zlvRkgJ-iFI7eghU
+

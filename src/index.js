@@ -12,17 +12,20 @@ dotenv.config();
 
 const app = express();
 
-const PORT = process.env.PORT ?? 3000;
+const PORT = process.env.PORT ?? 3001;
 
-app.use(
-  cors({
-    origin: ['http://localhost:5173'],
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
-    allowedHeaders: ['Content-Type', 'Authorization'],
-  })
-);
+// Posible config de cors:
+// app.use(
+//   cors({
+//     origin: ['http://localhost:5173'],
+//     methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
+//     allowedHeaders: ['Content-Type', 'Authorization'],
+//   })
+// );
+// Pero ahora lo dejo libre para todos:
+app.use(cors());
 app.use(bodyParser.json());
-// app.use(express.json()); Alternativa moderna
+// app.use(express.json()); Alternativa moderna a bodyParser
 
 // Rutas
 app.use('/api/products', productsRouter);

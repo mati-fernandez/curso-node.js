@@ -1,55 +1,41 @@
-// Datos mock:
-let products = [
-  { id: 1, title: 'Prod 1', price: 100 },
-  { id: 2, title: 'Prod 2', price: 200 },
-  { id: 3, title: 'Prod 3', price: 300 },
-];
+import * as model from '../models/products.model.js';
 
-export const getAll = () => products;
-
-export const getById = (id) => products.find((p) => p.id == id);
-
-export const create = (data) => {
-  const newProduct = { id: Date.now(), ...data };
-  products.push(newProduct);
-  return newProduct;
+export const fetchAllProducts = async () => {
+  return await model.getAll();
 };
 
-export const remove = (id) => {
-  products = products.filter((p) => p.id != id);
-  return 'Borrado: Producto con el id ' + id;
+export const fetchProductById = async (id) => {
+  const product = await model.getById(id);
+  if (!product) throw { status: 404, message: 'Producto no encontrado' };
+  return product;
 };
 
-// CON ASINCRONIA PARA DB:
-//
+export const createProduct = async ({
+  title,
+  price,
+  category,
+  stock,
+  description,
+}) => {
+  // validaciones
+  if (!title || !price || !stock)
+    throw {
+      status: 400,
+      message: 'Datos incompletos (title, price y stock son escenciales',
+    };
+  const payload = {
+    title,
+    price: Number(price),
+    category: category || 'Sin categoría',
+    createdAt: new Date(),
+    stock: Math.abs(Number(stock)) || 0,
+    description: description || '',
+  };
+  return await model.create(payload);
+};
 
-// import * as model from '../models/products.model.js';
-
-// export const fetchAllProducts = async () => {
-//   return await model.getAll();
-// };
-
-// export const fetchProductById = async (id) => {
-//   const product = await model.getById(id);
-//   if (!product) throw { status: 404, message: 'Producto no encontrado' };
-//   return product;
-// };
-
-// export const createProduct = async ({ title, price, category }) => {
-//   // validaciones
-//   if (!title || !price || !category)
-//     throw { status: 400, message: 'Datos incompletos' };
-//   const payload = {
-//     title,
-//     price: Number(price),
-//     category,
-//     createdAt: new Date(),
-//   };
-//   return await model.create(payload);
-// };
-
-// export const deleteProduct = async (id) => {
-//   const r = await model.remove(id);
-//   if (!r) throw { status: 404, message: 'Producto no encontrado' };
-//   return r;
-// };
+export const deleteProduct = async (id) => {
+  const r = await model.remove(id);
+  if (!r) throw { status: 404, message: 'Producto no encontrado' };
+  return r;
+};
