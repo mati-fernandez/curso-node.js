@@ -1,149 +1,203 @@
-# Proyecto Final Backend Node.js – API REST con Firebase, Express y JWT
+Backend Development with Java and Spring Boot
+=============================================
 
-Este proyecto implementa una **API REST completa** para administrar productos almacenados en **Cloud Firestore**, cumpliendo las consignas del Proyecto Final del curso de Node.js.
+As part of my training in backend development, I built a robust REST API using **Java** and **Spring Boot**, applying modern backend architecture and enterprise development standards.
 
-Incluye autenticación mediante **JWT**, manejo de errores, arquitectura en capas y protección de rutas.
+This project demonstrates my ability to:
 
----
+-   **Design and build a scalable REST API** using **Spring Boot**, implementing a professional architecture (Controllers, Services, Repositories).
 
-## 🚀 Tecnologías principales
-- **Node.js + Express**
-- **Firebase Admin (Firestore)**
-- **JWT (jsonwebtoken)**
-- **dotenv**
-- **CORS + body‑parser**
+-   **Implement full CRUD operations** for resource management, following RESTful conventions and utilizing **Spring Data JPA/Hibernate** for database interactions.
 
----
+-   **Implement security and authentication** using **Spring Security**, protecting endpoints and managing user roles effectively.
 
-## 📂 Arquitectura del proyecto
-Estructura basada en capas para mantener un código ordenado y escalable:
+-   **Manage database connectivity**, handling data persistence, entities, and relationships within a relational database context.
+
+-   **Implement professional error handling**, using `@ControllerAdvice` for centralized exception management and meaningful HTTP status codes.
+
+-   **Dependency Management and Configuration**, using **Maven/Gradle** to manage libraries and `application.properties/yml` for environment-specific configurations.
+
+The API focuses on clean code, testability, and enterprise-grade architecture, mirroring the patterns used in high-performance Java backend systems.
+
+🛠 Technologies Used
+--------------------
+
+-   **Java**
+
+-   **Spring Boot**
+
+-   **Spring Data JPA / Hibernate**
+
+-   **Spring Security**
+
+-   **Maven/Gradle**
+
+-   **RESTful API design**
+
+🧪 What I Learned
+-----------------
+
+This project helped solidify my understanding of:
+
+-   The Spring ecosystem and Inversion of Control (IoC/DI)
+
+-   Relational database management with ORMs
+
+-   Secure API development and user authentication
+
+-   Modular architecture in Java
+
+-   Centralized error management
+
+-   Enterprise backend standards
+
+💡 This project reflects backend development skills applicable to Backend Developer or Fullstack roles focused on building secure and scalable Java applications.Node.js Backend Final Project -- REST API with Firebase, Express, and JWT
+========================================================================
+
+This project implements a complete REST API to manage products stored in Cloud Firestore, fulfilling the requirements for the Node.js course final project. It includes JWT authentication, error handling, layered architecture, and protected routes.
+
+🚀 Core Technologies
+--------------------
+
+-   **Node.js + Express**
+
+-   **Firebase Admin (Firestore)**
+
+-   **JWT (jsonwebtoken)**
+
+-   **dotenv**
+
+-   **CORS + body-parser**
+
+📂 Project Architecture
+-----------------------
+
+Layered structure for clean and scalable code:
+
+Plaintext
 
 ```
-
 src/
-├── config/          -> configuración de Firebase
-├── routes/          -> rutas Express (auth y products)
-├── controllers/     -> lógica para cada endpoint
-├── services/        -> validaciones y reglas de negocio
-├── models/          -> acceso a Firestore
-├── middlewares/     -> auth + manejo de errores
-└── index.js         -> servidor principal
+├── config/          -> Firebase configuration
+├── routes/          -> Express routes (auth and products)
+├── controllers/     -> Logic for each endpoint
+├── services/        -> Validations and business logic
+├── models/          -> Firestore access
+├── middlewares/     -> Auth + error handling
+└── index.js         -> Main server
 
 ```
 
----
+🔐 Authentication
+-----------------
 
-## 🔐 Autenticación
-- Login en `/auth/login`.
-- Verifica credenciales básicas (mock o reales según el curso).
-- Genera un **Bearer Token JWT**.
-- Rutas protegidas usan middleware: `authenticate`.
+-   **Login:** `/auth/login`.
 
----
+-   Verifies credentials.
 
-## 🗃️ Conexión a Firebase
-- Proyecto creado en Firebase Console.
-- Se usa únicamente **firebase-admin** (backend).
-- Variables de entorno cargadas desde `.env`.
-- Ejemplo en `.env.example`:
+-   Generates a **Bearer JWT**.
+
+-   Protected routes use the `authenticate` middleware.
+
+🗃️ Firebase Connection
+-----------------------
+
+-   Project created via Firebase Console.
+
+-   Uses `firebase-admin` (server-side).
+
+-   Environment variables loaded from `.env`.
+
+*Example `.env.example`:*
+
+Fragmento de código
 
 ```
-
 FIREBASE_PROJECT_ID=
 FIREBASE_CLIENT_EMAIL=
-FIREBASE_PRIVATE_KEY="clave con saltos de línea en formato string"
+FIREBASE_PRIVATE_KEY="private key string"
 PORT=3000
 JWT_SECRET=
 
 ```
 
----
+📦 Product Endpoints
+--------------------
 
-## 📦 Endpoints de Productos
-Todos bajo `/api/products`.
+All endpoints are under `/api/products`.
 
-### GET `/api/products`
-Devuelve todos los productos.
+-   `GET /api/products` -- Retrieve all products.
 
-### GET `/api/products/:id`
-Devuelve un producto por ID.
+-   `GET /api/products/:id` -- Retrieve a product by ID.
 
-### POST `/api/products/create` (protegido)
-Crea un nuevo producto.
+-   `POST /api/products/create` (protected) -- Create a new product.
 
-### DELETE `/api/products/:id` (protegido)
-Elimina un producto.
+-   `DELETE /api/products/:id` (protected) -- Delete a product.
 
-*Opcional: PUT/PATCH, no requerido por la consigna.*
+🧠 Core Logic
+-------------
 
----
+-   **Services:** Validate input data, set default values (category, description, etc.), and throw errors with `{ status, message }`.
 
-## 🧠 Lógica principal
-### Servicios
-- Validan los datos de entrada.
-- Definen defaults (categoría, descripción, createdAt, etc.).
-- Lanzan errores con `{ status, message }`.
+-   **Models:** Direct connection to Firestore using `collection()`, `doc()`, `get()`, `add()`, `delete()`, and `update()`.
 
-### Modelos
-- Conexión directa a Firestore.
-- Métodos CRUD usando:
-  - `collection()`
-  - `doc()`
-  - `get()`
-  - `add()`
-  - `delete()`
-  - `update()`
+❗ Error Handling
+----------------
 
----
+Custom middlewares included:
 
-## ❗ Manejo de errores
-Middlewares incluidos:
+-   `notFound`: Returns 404 for non-existent routes.
 
-- `notFound` → 404 para rutas inexistentes.
-- `errorHandler` → captura errores y responde con `status` y `message`.
+-   `errorHandler`: Catches errors and sends standardized responses.
 
-Los controladores usan `try/catch` y delegan errores con `next(err)`.
+-   Controllers use `try/catch` and delegate errors via `next(err)`.
 
----
+🔒 HTTP Status Codes Used
+-------------------------
 
-## 🔒 Códigos de estado usados
-- **200** → OK
-- **201** → Creado (POST)
-- **400** → Datos inválidos
-- **401** → Token inválido / no provisto
-- **403** → Acceso denegado (si el token es válido pero no autorizado)
-- **404** → Ruta o recurso inexistente
-- **500** → Error interno
+-   **200**: OK
 
----
+-   **201**: Created (POST)
 
-## 📝 Scripts útiles
-Desde `package.json`:
+-   **400**: Bad Request (Invalid data)
 
-```
+-   **401**: Unauthorized (Invalid/missing token)
 
-"dev": "node --watch src/index.js",
-"prod": "node src/index.js"
+-   **403**: Forbidden
 
-```
+-   **404**: Not Found
 
-Corrección automática de recargas con `--watch`.
+-   **500**: Internal Server Error
 
----
+📝 Useful Scripts
+-----------------
 
-## ✔️ Estado del proyecto
-Todas las consignas del proyecto final fueron cumplidas:
-- Arquitectura modular
-- Firebase conectado
-- CRUD completo
-- JWT funcionando
-- Middlewares implementados
-- Manejo de errores correcto
+Defined in `package.json`:
 
----
+-   `dev`: `node --watch src/index.js`
 
-## 📌 Comentarios finales
-El proyecto quedó limpio, modular y fácil de extender (por ejemplo, para agregar PUT, validaciones extra o roles de usuario).
+-   `prod`: `node src/index.js`
 
+✔️ Project Status
+-----------------
 
+All final project requirements were met:
 
+-   Modular architecture
+
+-   Firebase integrated
+
+-   Full CRUD
+
+-   JWT authentication
+
+-   Middlewares implemented
+
+-   Proper error handling
+
+📌 Final Remarks
+----------------
+
+The project is clean, modular, and easy to extend (e.g., adding PUT requests, extra validations, or user roles).
+
+![](https://portfolio-4oh.pages.dev/images/cert-node.jpg)
